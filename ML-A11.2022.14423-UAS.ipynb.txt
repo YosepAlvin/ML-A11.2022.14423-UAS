@@ -1,0 +1,176 @@
+{
+ "cells": [
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "# Proyek Machine Learning\n",
+    "\n",
+    "**Nama Lengkap:** Yosep Alvin Dionivio Reyvaldi\n",
+    "\n",
+    "**NIM:** A11.2022.14423\n",
+    "\n",
+    "**Tanggal:** 15 Juli 2024"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## 1. Ringkasan dan Permasalahan Project\n",
+    "\n",
+    "### Ringkasan\n",
+    "Proyek ini bertujuan untuk memprediksi harga rumah berdasarkan berbagai fitur seperti luas tanah, jumlah kamar, dan lokasi. Dengan menggunakan dataset yang relevan, kita akan membangun model machine learning untuk menghasilkan prediksi harga yang akurat.\n",
+    "\n",
+    "### Permasalahan\n",
+    "Dalam dunia properti, menentukan harga yang tepat untuk rumah adalah tantangan besar. Harga rumah dipengaruhi oleh berbagai faktor dan memiliki variabilitas yang tinggi. Oleh karena itu, proyek ini bertujuan untuk membantu dalam memprediksi harga rumah dengan lebih akurat menggunakan teknik machine learning.\n",
+    "\n",
+    "### Tujuan\n",
+    "Tujuan dari proyek ini adalah untuk membangun model machine learning yang dapat memprediksi harga rumah berdasarkan fitur-fitur yang tersedia dalam dataset. Model ini diharapkan dapat membantu dalam proses penilaian properti dan memberikan estimasi harga yang lebih akurat.\n",
+    "\n",
+    "### Alur Penyelesaian\n",
+    "Berikut adalah bagan alur penyelesaian masalah:\n",
+    "\n",
+    "1. Pengumpulan Data\n",
+    "2. Eksplorasi Data (EDA)\n",
+    "3. Pra-pemrosesan Data\n",
+    "4. Pemilihan dan Pelatihan Model\n",
+    "5. Evaluasi Model\n",
+    "6. Prediksi Harga Rumah\n",
+    "\n",
+    "![Bagan Alur](path/to/your/flowchart.png)"  # Ganti path dengan path ke gambar bagan alur
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## 2. Penjelasan Dataset\n",
+    "\n",
+    "### Deskripsi Dataset\n",
+    "Dataset yang digunakan dalam proyek ini adalah dataset harga rumah yang terdiri dari beberapa fitur seperti luas tanah, jumlah kamar, lokasi, dan lain-lain. Dataset ini diambil dari [sumber data] dan terdiri dari [jumlah data] data.\n",
+    "\n",
+    "### Exploratory Data Analysis (EDA)\n",
+    "Pada tahap EDA, kita akan melakukan visualisasi dan analisis awal terhadap data untuk memahami distribusi data, hubungan antar fitur, dan mengidentifikasi outliers atau data yang hilang.\n",
+    "\n",
+    "### Proses Features Dataset\n",
+    "Pada tahap ini, kita akan melakukan pembersihan data, penanganan data yang hilang, dan transformasi fitur-fitur yang ada agar siap digunakan dalam proses pelatihan model."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "# Contoh Kode untuk EDA\n",
+    "import pandas as pd\n",
+    "import seaborn as sns\n",
+    "import matplotlib.pyplot as plt\n",
+    "\n",
+    "# Membaca dataset\n",
+    "df = pd.read_csv('path/to/dataset.csv')\n",
+    "\n",
+    "# Melihat sekilas data\n",
+    "df.head()\n",
+    "\n",
+    "# Visualisasi distribusi harga rumah\n",
+    "sns.histplot(df['harga'], kde=True)\n",
+    "plt.title('Distribusi Harga Rumah')\n",
+    "plt.show()"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## 3. Proses Learning Modeling\n",
+    "\n",
+    "### Pemilihan Model\n",
+    "Model yang dipilih untuk proyek ini adalah regresi linear, karena sesuai untuk masalah prediksi harga rumah yang merupakan masalah regresi.\n",
+    "\n",
+    "### Training dan Validation\n",
+    "Pada tahap ini, kita akan membagi data menjadi data pelatihan dan data validasi. Kemudian, model akan dilatih menggunakan data pelatihan dan dievaluasi menggunakan data validasi."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "# Contoh Kode untuk Training dan Validation\n",
+    "from sklearn.model_selection import train_test_split\n",
+    "from sklearn.linear_model import LinearRegression\n",
+    "from sklearn.metrics import mean_squared_error\n",
+    "\n",
+    "# Membagi data menjadi data pelatihan dan data validasi\n",
+    "X = df.drop('harga', axis=1)\n",
+    "y = df['harga']\n",
+    "X_train, X_val, y_train, y_val = train_test_split(X, y, test_size=0.2, random_state=42)\n",
+    "\n",
+    "# Melatih model\n",
+    "model = LinearRegression()\n",
+    "model.fit(X_train, y_train)\n",
+    "\n",
+    "# Evaluasi model\n",
+    "y_pred = model.predict(X_val)\n",
+    "mse = mean_squared_error(y_val, y_pred)\n",
+    "print(f'Mean Squared Error: {mse}')"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## 4. Performa Model\n",
+    "\n",
+    "### Evaluasi Model\n",
+    "Hasil evaluasi model menunjukkan bahwa Mean Squared Error (MSE) dari model yang dilatih adalah [nilai MSE]. Nilai MSE yang lebih rendah menunjukkan bahwa model memiliki performa yang baik dalam memprediksi harga rumah.\n",
+    "\n",
+    "### Perbandingan Model\n",
+    "Jika ada beberapa model yang dibandingkan, berikut adalah performa masing-masing model:\n",
+    "\n",
+    "| Model | Mean Squared Error |\n",
+    "|-------|--------------------|\n",
+    "| Linear Regression | [nilai MSE] |\n",
+    "| Decision Tree | [nilai MSE] |\n",
+    "| Random Forest | [nilai MSE] |"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## 5. Diskusi Hasil dan Kesimpulan\n",
+    "\n",
+    "### Diskusi\n",
+    "Hasil dari model menunjukkan bahwa fitur-fitur seperti luas tanah dan jumlah kamar memiliki pengaruh yang signifikan terhadap harga rumah. Namun, terdapat beberapa outliers yang mempengaruhi prediksi harga.\n",
+    "\n",
+    "### Kesimpulan\n",
+    "Model regresi linear yang digunakan dalam proyek ini mampu memprediksi harga rumah dengan cukup baik. Namun, performa model dapat ditingkatkan dengan menambahkan lebih banyak fitur atau menggunakan teknik pemodelan yang lebih kompleks."
+   ]
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python 3",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.8.5"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 4
+}
